@@ -28,16 +28,16 @@ export type Testimonial = {
   role: string;
   company: string;
   avatar?: string;
-  content: string;
+  quote: string;
 };
 
-export type PricingPlan = {
+export type PricingTier = {
   id: string;
   name: string;
   price: string;
   period: string;
   description: string;
   features: string[];
-  highlighted?: boolean;
   cta: string;
+  highlighted?: boolean;
 };

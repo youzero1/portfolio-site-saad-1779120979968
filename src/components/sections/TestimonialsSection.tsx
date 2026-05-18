@@ -8,20 +8,18 @@ export default function TestimonialsSection() {
       <div className={styles.container}>
         <SectionHeader
           eyebrow="Testimonials"
-          title="Loved by developers worldwide"
-          subtitle="Don't take our word for it — here's what teams are saying."
+          title="Loved by developers"
+          subtitle="Don't take our word for it."
         />
         <div className={styles.grid}>
           {testimonials.map((t) => (
             <div key={t.id} className={styles.card}>
-              <p className={styles.content}>"{t.content}"</p>
+              <p className={styles.quote}>"{t.quote}"</p>
               <div className={styles.author}>
-                <div className={styles.avatar}>
-                  {t.name.charAt(0)}
-                </div>
+                <div className={styles.authorAvatar} />
                 <div>
-                  <p className={styles.name}>{t.name}</p>
-                  <p className={styles.role}>{t.role}, {t.company}</p>
+                  <p className={styles.authorName}>{t.name}</p>
+                  <p className={styles.authorRole}>{t.role}, {t.company}</p>
                 </div>
               </div>
             </div>

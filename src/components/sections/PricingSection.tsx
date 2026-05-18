@@ -1,8 +1,8 @@
 import { Check } from 'lucide-react';
-import { pricingPlans } from '@/lib/data';
+import clsx from 'clsx';
+import { pricingTiers } from '@/lib/data';
 import styles from '@/components/sections/PricingSection.module.css';
 import SectionHeader from '@/components/ui/SectionHeader';
-import clsx from 'clsx';
 
 export default function PricingSection() {
   return (
@@ -11,33 +11,31 @@ export default function PricingSection() {
         <SectionHeader
           eyebrow="Pricing"
           title="Simple, transparent pricing"
-          subtitle="Choose the plan that fits your team. Upgrade or downgrade anytime."
+          subtitle="No hidden fees. Cancel anytime."
         />
         <div className={styles.grid}>
-          {pricingPlans.map((plan) => (
+          {pricingTiers.map((tier) => (
             <div
-              key={plan.id}
-              className={clsx(styles.card, plan.highlighted && styles.highlighted)}
+              key={tier.id}
+              className={clsx(styles.card, tier.highlighted && styles.highlighted)}
             >
-              {plan.highlighted && (
-                <div className={styles.badge}>Most Popular</div>
-              )}
-              <div className={styles.planName}>{plan.name}</div>
+              {tier.highlighted && <div className={styles.badge}>Most Popular</div>}
+              <h3 className={styles.tierName}>{tier.name}</h3>
+              <p className={styles.tierDesc}>{tier.description}</p>
               <div className={styles.priceRow}>
-                <span className={styles.price}>{plan.price}</span>
-                {plan.period && <span className={styles.period}>{plan.period}</span>}
+                <span className={styles.price}>{tier.price}</span>
+                <span className={styles.period}>/{tier.period}</span>
               </div>
-              <p className={styles.desc}>{plan.description}</p>
               <ul className={styles.features}>
-                {plan.features.map((f) => (
+                {tier.features.map((f) => (
                   <li key={f} className={styles.feature}>
                     <Check size={15} className={styles.check} />
                     {f}
                   </li>
                 ))}
               </ul>
-              <button className={clsx(styles.cta, plan.highlighted && styles.ctaHighlighted)}>
-                {plan.cta}
+              <button className={clsx(styles.cta, tier.highlighted && styles.ctaHighlighted)}>
+                {tier.cta}
               </button>
             </div>
           ))}
