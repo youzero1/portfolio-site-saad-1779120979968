@@ -1,110 +1,42 @@
-import { useState } from 'react';
 import { Check } from 'lucide-react';
-import clsx from 'clsx';
+import { pricingPlans } from '@/lib/data';
 import styles from '@/components/sections/PricingSection.module.css';
-
-const plans = [
-  {
-    name: 'Starter',
-    monthlyPrice: 0,
-    yearlyPrice: 0,
-    desc: 'Perfect for solo developers and small experiments.',
-    features: [
-      '3 projects',
-      '5GB storage',
-      'Community support',
-      'Basic analytics',
-      'CI/CD pipelines',
-    ],
-    cta: 'Get started free',
-    highlight: false,
-  },
-  {
-    name: 'Pro',
-    monthlyPrice: 29,
-    yearlyPrice: 19,
-    desc: 'For growing teams who need more power and collaboration.',
-    features: [
-      'Unlimited projects',
-      '100GB storage',
-      'Priority support',
-      'Advanced analytics',
-      'CI/CD + Auto-deploy',
-      'Team collaboration',
-      'Custom domains',
-    ],
-    cta: 'Start free trial',
-    highlight: true,
-  },
-  {
-    name: 'Enterprise',
-    monthlyPrice: 99,
-    yearlyPrice: 79,
-    desc: 'For large teams with advanced security and compliance needs.',
-    features: [
-      'Unlimited everything',
-      '1TB storage',
-      'Dedicated support',
-      'AI-powered insights',
-      'SSO / SAML',
-      'Audit logs',
-      'SLA guarantee',
-      'Custom integrations',
-    ],
-    cta: 'Contact sales',
-    highlight: false,
-  },
-];
+import SectionHeader from '@/components/ui/SectionHeader';
+import clsx from 'clsx';
 
 export default function PricingSection() {
-  const [yearly, setYearly] = useState(false);
-
   return (
     <section id="pricing" className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <p className={styles.eyebrow}>Pricing</p>
-          <h2 className={styles.title}>Simple, transparent pricing</h2>
-          <p className={styles.subtitle}>Start for free. Scale as you grow. No surprise bills.</p>
-
-          <div className={styles.toggle}>
-            <span className={clsx(styles.toggleLabel, !yearly && styles.activeLabel)}>Monthly</span>
-            <button
-              className={clsx(styles.toggleBtn, yearly && styles.toggleBtnOn)}
-              onClick={() => setYearly((v) => !v)}
-              aria-label="Toggle billing period"
-            >
-              <span className={clsx(styles.toggleThumb, yearly && styles.toggleThumbOn)} />
-            </button>
-            <span className={clsx(styles.toggleLabel, yearly && styles.activeLabel)}>
-              Yearly <span className={styles.saveBadge}>Save 30%</span>
-            </span>
-          </div>
-        </div>
-
+        <SectionHeader
+          eyebrow="Pricing"
+          title="Simple, transparent pricing"
+          subtitle="Choose the plan that fits your team. Upgrade or downgrade anytime."
+        />
         <div className={styles.grid}>
-          {plans.map((plan) => (
-            <div key={plan.name} className={clsx(styles.card, plan.highlight && styles.highlight)}>
-              {plan.highlight && <div className={styles.popularBadge}>Most Popular</div>}
-              <h3 className={styles.planName}>{plan.name}</h3>
-              <p className={styles.planDesc}>{plan.desc}</p>
-              <div className={styles.priceRow}>
-                <span className={styles.currency}>$</span>
-                <span className={styles.price}>{yearly ? plan.yearlyPrice : plan.monthlyPrice}</span>
-                <span className={styles.period}>/mo</span>
-              </div>
-              {yearly && plan.monthlyPrice > 0 && (
-                <p className={styles.billed}>Billed annually (${(yearly ? plan.yearlyPrice : plan.monthlyPrice) * 12}/yr)</p>
+          {pricingPlans.map((plan) => (
+            <div
+              key={plan.id}
+              className={clsx(styles.card, plan.highlighted && styles.highlighted)}
+            >
+              {plan.highlighted && (
+                <div className={styles.badge}>Most Popular</div>
               )}
+              <div className={styles.planName}>{plan.name}</div>
+              <div className={styles.priceRow}>
+                <span className={styles.price}>{plan.price}</span>
+                {plan.period && <span className={styles.period}>{plan.period}</span>}
+              </div>
+              <p className={styles.desc}>{plan.description}</p>
               <ul className={styles.features}>
                 {plan.features.map((f) => (
-                  <li key={f} className={styles.featureItem}>
-                    <Check size={14} className={styles.check} />
+                  <li key={f} className={styles.feature}>
+                    <Check size={15} className={styles.check} />
                     {f}
                   </li>
                 ))}
               </ul>
-              <button className={clsx(styles.cta, plan.highlight && styles.ctaHighlight)}>
+              <button className={clsx(styles.cta, plan.highlighted && styles.ctaHighlighted)}>
                 {plan.cta}
               </button>
             </div>

@@ -1,6 +1,10 @@
-export type NavLink = {
-  label: string;
-  href: string;
+export type Experience = {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  tags: string[];
 };
 
 export type Project = {
@@ -8,29 +12,32 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  liveUrl: string;
-  githubUrl: string;
-  featured: boolean;
-  color: string;
+  link?: string;
+  image?: string;
 };
 
 export type Skill = {
   name: string;
   level: number;
-  category: 'frontend' | 'backend' | 'tools';
+  category: string;
 };
 
-export type Experience = {
+export type Testimonial = {
   id: string;
-  company: string;
+  name: string;
   role: string;
+  company: string;
+  avatar?: string;
+  content: string;
+};
+
+export type PricingPlan = {
+  id: string;
+  name: string;
+  price: string;
   period: string;
   description: string;
-  tags: string[];
-};
-
-export type SocialLink = {
-  label: string;
-  href: string;
-  icon: string;
+  features: string[];
+  highlighted?: boolean;
+  cta: string;
 };

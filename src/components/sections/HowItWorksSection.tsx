@@ -1,23 +1,25 @@
+import { FileText, Cpu, Rocket } from 'lucide-react';
 import styles from '@/components/sections/HowItWorksSection.module.css';
+import SectionHeader from '@/components/ui/SectionHeader';
 
 const steps = [
   {
+    icon: FileText,
     num: '01',
-    title: 'Create your workspace',
-    desc: 'Sign up in seconds and set up your workspace with your team. Import existing projects or start fresh — we support both.',
-    color: '#6c63ff',
+    title: 'Define your project',
+    desc: 'Describe your idea or import an existing codebase. NexusAI understands context at a deep level.',
   },
   {
+    icon: Cpu,
     num: '02',
-    title: 'Connect your stack',
-    desc: '70+ native integrations with the tools you already use. GitHub, Slack, Figma, Jira — plug in and go.',
-    color: '#ff6b6b',
+    title: 'Let AI do the heavy lifting',
+    desc: 'Our models generate boilerplate, catch bugs, write tests, and suggest optimizations in real time.',
   },
   {
+    icon: Rocket,
     num: '03',
-    title: 'Ship & iterate',
-    desc: 'Deploy with one click, monitor in real-time, and iterate faster than ever with AI-assisted workflows.',
-    color: '#43e97b',
+    title: 'Ship with confidence',
+    desc: 'One-click deployments to any cloud. Rollbacks, previews, and monitoring included out of the box.',
   },
 ];
 
@@ -25,27 +27,20 @@ export default function HowItWorksSection() {
   return (
     <section id="how-it-works" className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <p className={styles.eyebrow}>How It Works</p>
-          <h2 className={styles.title}>Up and running in minutes</h2>
-          <p className={styles.subtitle}>
-            No complex setup, no long onboarding. Just sign up and start building.
-          </p>
-        </div>
-
+        <SectionHeader
+          eyebrow="How It Works"
+          title="From idea to production in 3 steps"
+          subtitle="No PhD required. NexusAI makes complex workflows feel effortless."
+        />
         <div className={styles.steps}>
-          {steps.map((step, idx) => (
-            <div key={step.num} className={styles.step}>
-              <div className={styles.stepLeft}>
-                <div className={styles.numWrap} style={{ borderColor: `${step.color}40` }}>
-                  <span className={styles.num} style={{ color: step.color }}>{step.num}</span>
-                </div>
-                {idx < steps.length - 1 && <div className={styles.connector} />}
+          {steps.map(({ icon: Icon, num, title, desc }) => (
+            <div key={num} className={styles.step}>
+              <div className={styles.stepIcon}>
+                <Icon size={24} />
               </div>
-              <div className={styles.stepBody}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDesc}>{step.desc}</p>
-              </div>
+              <div className={styles.stepNum}>{num}</div>
+              <h3 className={styles.stepTitle}>{title}</h3>
+              <p className={styles.stepDesc}>{desc}</p>
             </div>
           ))}
         </div>
