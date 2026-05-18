@@ -1,0 +1,117 @@
+.section {
+  padding: var(--space-24) var(--space-6);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-top: var(--space-12);
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.body {
+  font-size: 0.97rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.stats {
+  display: flex;
+  gap: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  margin-top: var(--space-2);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statNum {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-accent-light);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.traitsCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.trait {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-5);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.trait:hover {
+  border-color: var(--color-border);
+  background: var(--color-bg-card-hover);
+}
+
+.traitIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(108,99,255,0.12);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-light);
+  flex-shrink: 0;
+}
+
+.traitLabel {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.traitDesc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
