@@ -4,14 +4,16 @@
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 0 var(--space-6);
-  transition: background var(--transition-base), box-shadow var(--transition-base), backdrop-filter var(--transition-base);
+  padding: 0 var(--space-8);
+  transition: background var(--transition-base), border-color var(--transition-base), backdrop-filter var(--transition-base);
+  border-bottom: 1px solid transparent;
 }
 
-.header.scrolled {
+.scrolled {
   background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 var(--color-border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--color-border-subtle);
 }
 
 .inner {
@@ -21,103 +23,100 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-8);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   text-decoration: none;
+  flex-shrink: 0;
 }
 
-.logoMark {
-  width: 36px;
-  height: 36px;
-  background: var(--color-accent);
-  border-radius: var(--radius-md);
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--color-accent), #8b85ff);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 18px;
   color: #fff;
-  box-shadow: var(--shadow-accent);
-  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(108,99,255,0.4);
 }
 
 .logoText {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--color-text);
 }
 
 .logoAccent {
-  color: var(--color-accent-light);
-  margin-left: 4px;
+  color: var(--color-accent);
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
 }
 
 .navLink {
   background: none;
   border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
   color: var(--color-text-secondary);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-sm);
-  transition: color var(--transition-fast), background var(--transition-fast);
-  font-family: var(--font-sans);
+  font-size: 0.88rem;
   font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+  font-family: inherit;
 }
 
 .navLink:hover {
   color: var(--color-text);
-  background: rgba(108,99,255,0.1);
+  background: rgba(255,255,255,0.05);
 }
 
 .navCta {
-  margin-left: var(--space-3);
-  padding: var(--space-2) var(--space-5);
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent), #8b85ff);
   color: #fff;
-  border-radius: var(--radius-full);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
-  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  font-family: inherit;
+  box-shadow: 0 0 16px rgba(108,99,255,0.3);
+  margin-left: var(--space-2);
 }
 
 .navCta:hover {
-  background: var(--color-accent-light);
-  box-shadow: var(--shadow-accent);
   transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(108,99,255,0.5);
 }
 
 .menuBtn {
   display: none;
+  background: none;
+  border: none;
   color: var(--color-text);
+  cursor: pointer;
   padding: var(--space-2);
   border-radius: var(--radius-sm);
   transition: background var(--transition-fast);
 }
 
 .menuBtn:hover {
-  background: rgba(108,99,255,0.1);
+  background: rgba(255,255,255,0.06);
 }
 
-@media (max-width: 768px) {
-  .menuBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+@media (max-width: 700px) {
   .nav {
     display: none;
     position: fixed;
@@ -125,29 +124,27 @@
     left: 0;
     right: 0;
     background: rgba(10,10,15,0.97);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
     flex-direction: column;
     padding: var(--space-6);
     gap: var(--space-2);
     border-bottom: 1px solid var(--color-border-subtle);
   }
-
-  .nav.navOpen {
+  .navOpen {
     display: flex;
   }
-
   .navLink {
     width: 100%;
     text-align: left;
     padding: var(--space-3) var(--space-4);
-    font-size: 1rem;
   }
-
   .navCta {
     width: 100%;
     text-align: center;
-    padding: var(--space-3) var(--space-5);
     margin-left: 0;
     margin-top: var(--space-2);
+  }
+  .menuBtn {
+    display: flex;
   }
 }

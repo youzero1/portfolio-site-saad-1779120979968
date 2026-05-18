@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 import clsx from 'clsx';
 import styles from '@/components/layout/Header.module.css';
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Features', href: '#features' },
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Pricing', href: '#pricing' },
 ];
 
 export default function Header() {
@@ -30,9 +29,15 @@ export default function Header() {
   return (
     <header className={clsx(styles.header, scrolled && styles.scrolled)}>
       <div className={styles.inner}>
-        <a href="#" className={styles.logo} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-          <span className={styles.logoMark}>A</span>
-          <span className={styles.logoText}>Alex<span className={styles.logoAccent}>Morgan</span></span>
+        <a
+          href="#"
+          className={styles.logo}
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+        >
+          <div className={styles.logoIcon}>
+            <Zap size={16} />
+          </div>
+          <span className={styles.logoText}>Nexus<span className={styles.logoAccent}>AI</span></span>
         </a>
 
         <nav className={clsx(styles.nav, menuOpen && styles.navOpen)}>
@@ -45,9 +50,12 @@ export default function Header() {
               {link.label}
             </button>
           ))}
-          <a href="#contact" className={styles.navCta} onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}>
-            Hire Me
-          </a>
+          <button
+            className={styles.navCta}
+            onClick={() => handleNavClick('#pricing')}
+          >
+            Get Started
+          </button>
         </nav>
 
         <button

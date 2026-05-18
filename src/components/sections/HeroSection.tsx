@@ -1,10 +1,9 @@
-import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowRight, Sparkles, Star } from 'lucide-react';
 import styles from '@/components/sections/HeroSection.module.css';
 
 export default function HeroSection() {
-  const scrollToAbout = () => {
-    const el = document.querySelector('#about');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -12,55 +11,93 @@ export default function HeroSection() {
       <div className={styles.bg}>
         <div className={styles.orb1} />
         <div className={styles.orb2} />
+        <div className={styles.orb3} />
         <div className={styles.grid} />
       </div>
 
       <div className={styles.content}>
         <div className={styles.badge}>
-          <span className={styles.badgeDot} />
-          Available for opportunities
+          <Sparkles size={14} className={styles.badgeIcon} />
+          Introducing the future of productivity
         </div>
 
         <h1 className={styles.heading}>
-          Hi, I'm <span className={styles.name}>Alex Morgan</span>
-          <br />
-          <span className={styles.role}>Full-Stack Developer</span>
+          Build faster,<br />
+          <span className={styles.gradient}>ship smarter</span>,<br />
+          grow bigger.
         </h1>
 
-        <p className={styles.tagline}>
-          I craft <span className={styles.highlight}>performant</span>,{' '}
-          <span className={styles.highlight}>accessible</span>, and{' '}
-          <span className={styles.highlight}>beautiful</span> web experiences
-          that users love and businesses rely on.
+        <p className={styles.sub}>
+          The all-in-one platform that turns your boldest ideas into production-ready products.
+          Join 50,000+ teams already shipping with confidence.
         </p>
 
         <div className={styles.actions}>
-          <a
-            href="#projects"
+          <button
             className={styles.btnPrimary}
-            onClick={(e) => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}
+            onClick={() => scrollTo('#pricing')}
           >
-            View My Work
-          </a>
-          <a
-            href="#contact"
+            Start for free <ArrowRight size={16} />
+          </button>
+          <button
             className={styles.btnSecondary}
-            onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+            onClick={() => scrollTo('#features')}
           >
-            Get in Touch
-          </a>
+            See how it works
+          </button>
         </div>
 
         <div className={styles.social}>
-          <a href="#" className={styles.socialLink} aria-label="GitHub"><Github size={20} /></a>
-          <a href="#" className={styles.socialLink} aria-label="LinkedIn"><Linkedin size={20} /></a>
-          <a href="#" className={styles.socialLink} aria-label="Twitter"><Twitter size={20} /></a>
+          <div className={styles.avatars}>
+            {['A','B','C','D','E'].map((l) => (
+              <div key={l} className={styles.avatar}>{l}</div>
+            ))}
+          </div>
+          <div className={styles.stars}>
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={14} className={styles.star} />
+            ))}
+            <span className={styles.starsText}>Loved by 50,000+ users</span>
+          </div>
         </div>
       </div>
 
-      <button className={styles.scrollBtn} onClick={scrollToAbout} aria-label="Scroll down">
-        <ArrowDown size={20} />
-      </button>
+      <div className={styles.mockup}>
+        <div className={styles.mockupInner}>
+          <div className={styles.mockupBar}>
+            <span /><span /><span />
+          </div>
+          <div className={styles.mockupBody}>
+            <div className={styles.mockupSidebar}>
+              {['Dashboard','Projects','Analytics','Team','Settings'].map((item) => (
+                <div key={item} className={styles.mockupNavItem}>{item}</div>
+              ))}
+            </div>
+            <div className={styles.mockupMain}>
+              <div className={styles.mockupCards}>
+                {[
+                  { label: 'Revenue', val: '$84.2k', up: true },
+                  { label: 'Users', val: '12,430', up: true },
+                  { label: 'Conversion', val: '4.7%', up: false },
+                ].map((c) => (
+                  <div key={c.label} className={styles.mockupCard}>
+                    <span className={styles.mockupCardLabel}>{c.label}</span>
+                    <span className={styles.mockupCardVal}>{c.val}</span>
+                    <span className={c.up ? styles.mockupUp : styles.mockupDown}>
+                      {c.up ? '↑' : '↓'} {c.up ? '12%' : '2%'}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.mockupChart}>
+                {[40,65,45,80,55,90,70,95,60,85].map((h, i) => (
+                  <div key={i} className={styles.mockupBar2} style={{ height: `${h}%` }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
